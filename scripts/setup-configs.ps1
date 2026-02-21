@@ -51,6 +51,12 @@ $configs = @(
         Name   = "Claude Code settings"
         Source = "claude-code\settings.json"
         Dest   = "$HOME\.claude\settings.json"
+    },
+    @{
+        Name   = "Neovim (LazyVim) config"
+        Source = "nvim"
+        Dest   = "$HOME\AppData\Local\nvim"
+        IsDir  = $true
     }
 )
 
@@ -65,13 +71,18 @@ foreach ($cfg in $configs) {
         continue
     }
 
-    # Create destination directory if needed
-    $dstDir = Split-Path -Parent $dst
-    if (-not (Test-Path $dstDir)) {
-        New-Item -ItemType Directory -Path $dstDir -Force | Out-Null
+    if ($cfg.IsDir) {
+        # Directory config: mirror the entire folder
+        if (Test-Path $dst) { Remove-Item $dst -Recurse -Force }
+        Copy-Item -Path $src -Destination $dst -Recurse -Force
+    } else {
+        # Single-file config
+        $dstDir = Split-Path -Parent $dst
+        if (-not (Test-Path $dstDir)) {
+            New-Item -ItemType Directory -Path $dstDir -Force | Out-Null
+        }
+        Copy-Item -Path $src -Destination $dst -Force
     }
-
-    Copy-Item -Path $src -Destination $dst -Force
     Write-Host "  OK   $($cfg.Name)" -ForegroundColor Green
     Write-Host "       -> $dst" -ForegroundColor DarkGray
 }

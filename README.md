@@ -2,7 +2,8 @@
 
 Tokyo Night Storm themed Windows 11 desktop setup with tiling window management, a custom status bar, and a fully scripted install.
 
-<!-- ![screenshot](screenshot.png) -->
+![Tiled workspace with terminal, browser, and code editor](screenshot.png)
+![Clean desktop with Zebar status bar](screenshot2.png)
 
 ## Quick Start
 
@@ -39,19 +40,21 @@ cd windows-ricing\scripts
 | Taskbar | [Windhawk](https://windhawk.net/) | Fully transparent taskbar |
 | Cursor | [Bibata Modern Classic](https://github.com/ful1e5/Bibata_Cursor) | Minimal dark cursor theme |
 | File manager | [Files](https://files.community/) | Modern file explorer replacement |
+| Editor | [Neovim](https://neovim.io/) + [LazyVim](https://www.lazyvim.org/) | IDE-like editor with LSP, autocomplete, treesitter |
 | Font | [JetBrainsMono Nerd Font](https://www.nerdfonts.com/) | Used in terminal and status bar |
 
 ## Configs
 
 ```
 configs/
-  powershell/     PowerShell profile (PS 7 + PS 5.1)
+  powershell/        PowerShell profile (PS 7 + PS 5.1)
   windows-terminal/  Terminal settings + Tokyo Night Storm color scheme
-  glazewm/        Tiling WM config with workspace rules
-  zebar/          Status bar styles + widget HTML
-  btop/           System monitor config
-  bash/           Git Bash dircolors fix
-  claude-code/    Claude Code custom settings
+  glazewm/           Tiling WM config with workspace rules
+  zebar/             Status bar styles + widget HTML
+  btop/              System monitor config
+  bash/              Git Bash dircolors fix
+  claude-code/       Claude Code custom settings
+  nvim/              Neovim config (LazyVim)
 ```
 
 ## Manual Steps

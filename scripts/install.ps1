@@ -13,6 +13,8 @@ $apps = @(
     "RamenSoftware.Windhawk"
     "FilesCommunity.Files"
     "GitHub.cli"
+    "Neovim.Neovim"
+    "zig.zig"
 )
 
 Write-Host "`n=== Windows Rice Installer ===" -ForegroundColor Cyan
