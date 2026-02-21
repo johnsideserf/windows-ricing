@@ -5,8 +5,8 @@
 @import 'https://www.nerdfonts.com/assets/css/webfont.css';
 
 :root {
-  --text-size: 12px;
-  --icon-size: 12px;
+  --text-size: 13px;
+  --icon-size: 14px;
 
   /* Tokyo Night palette */
   --tn-bg: #0D0E16;
@@ -65,8 +65,12 @@ i {
   font-size: var(--icon-size);
 }
 
+.nf {
+  font-family: 'JetBrainsMono Nerd Font' !important;
+}
+
 body {
-  font-family: ui-monospace, monospace;
+  font-family: 'JetBrainsMono Nerd Font', ui-monospace, monospace;
   font-size: var(--text-size);
   overflow: hidden;
 }
@@ -116,11 +120,68 @@ body,
 .binding-mode,
 .tiling-direction,
 .paused-button,
+.media,
 .network,
 .memory,
 .cpu,
 .battery {
   margin-right: 20px;
+}
+
+.media {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.media > i {
+  color: var(--tn-green);
+  margin-right: 6px;
+}
+
+.media-text {
+  max-width: 180px;
+  overflow: hidden;
+  margin-right: 4px;
+  color: var(--tn-fg);
+  mask-image: linear-gradient(to right, transparent 0, #fff 6px, #fff calc(100% - 6px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #fff 6px, #fff calc(100% - 6px), transparent 100%);
+}
+
+.media-scroll {
+  display: inline-block;
+  white-space: nowrap;
+  animation: media-scroll 12s linear infinite;
+  padding-left: 100%;
+}
+
+@keyframes media-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.media-btn {
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.media-btn i {
+  color: var(--tn-purple);
+  margin-right: 0;
+  font-size: var(--icon-size);
+  transition: color 0.15s ease;
+}
+
+.media-btn:hover i {
+  color: var(--tn-blue);
 }
 
 .workspaces {

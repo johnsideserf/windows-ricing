@@ -33,6 +33,7 @@
         battery: { type: 'battery' },
         memory: { type: 'memory' },
         weather: { type: 'weather' },
+        media: { type: 'media' },
       });
 
       createRoot(document.getElementById('root')).render(<App />);
@@ -145,6 +146,63 @@
             <div className="center">{output.date?.formatted}</div>
 
             <div className="right">
+              {output.media &&
+                (() => {
+                  const spotifySession =
+                    output.media.allSessions?.find(s =>
+                      s.sessionId.toLowerCase().includes('spotify'),
+                    );
+                  if (!spotifySession) return null;
+                  return (
+                    <div className="media">
+                      <i className="nf nf-md-spotify"></i>
+                      <div className="media-text">
+                        <span className="media-scroll">
+                          {spotifySession.title}
+                          {spotifySession.artist &&
+                            ` \u2013 ${spotifySession.artist}`}
+                        </span>
+                      </div>
+                      <button
+                        className="media-btn"
+                        onClick={() =>
+                          output.media.previous({
+                            sessionId: spotifySession.sessionId,
+                          })
+                        }
+                      >
+                        <i className="nf nf-md-skip_previous"></i>
+                      </button>
+                      <button
+                        className="media-btn"
+                        onClick={() =>
+                          output.media.togglePlayPause({
+                            sessionId: spotifySession.sessionId,
+                          })
+                        }
+                      >
+                        <i
+                          className={`nf ${
+                            spotifySession.isPlaying
+                              ? 'nf-md-pause'
+                              : 'nf-md-play'
+                          }`}
+                        ></i>
+                      </button>
+                      <button
+                        className="media-btn"
+                        onClick={() =>
+                          output.media.next({
+                            sessionId: spotifySession.sessionId,
+                          })
+                        }
+                      >
+                        <i className="nf nf-md-skip_next"></i>
+                      </button>
+                    </div>
+                  );
+                })()}
+
               {output.glazewm && (
                 <>
                   {output.glazewm.isPaused && (
