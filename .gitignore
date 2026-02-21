@@ -1,0 +1,12 @@
+# Cursor binaries (downloaded by setup-cursors.ps1)
+*.cur
+*.ani
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Temp files
+*.tmp
+*.bak
+*.log

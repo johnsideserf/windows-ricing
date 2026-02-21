@@ -1,0 +1,28 @@
+{
+  "autoUpdatesChannel": "latest",
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Retaking Jerusalem",
+      "Deus Vulting",
+      "Invoking the Pope",
+      "Taking the Cross",
+      "Besieging Antioch",
+      "Sacking Constantinople",
+      "Pledging fealty",
+      "Anointing the blade",
+      "Reciting Latin",
+      "Consulting the Templars",
+      "Tithing to Rome",
+      "Assembling the Outremer",
+      "Blessing the siege engines",
+      "Petitioning the Holy See",
+      "Unfurling the banner",
+      "Summoning the Hospitallers",
+      "Preaching at Clermont",
+      "Donning the surcoat",
+      "Raising the portcullis",
+      "Sailing for Acre"
+    ]
+  }
+}

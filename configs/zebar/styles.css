@@ -1,0 +1,186 @@
+/**
+ * Import the Nerdfonts icon font.
+ * Ref https://www.nerdfonts.com/cheat-sheet for a cheatsheet of available Nerdfonts icons.
+ */
+@import 'https://www.nerdfonts.com/assets/css/webfont.css';
+
+:root {
+  --text-size: 12px;
+  --icon-size: 12px;
+
+  /* Tokyo Night palette */
+  --tn-bg: #0D0E16;
+  --tn-bg-bar: rgba(13 14 22 / 92%);
+  --tn-fg: #a9b1d6;
+  --tn-blue: #7aa2f7;
+  --tn-purple: #bb9af7;
+  --tn-cyan: #7dcfff;
+  --tn-green: #9ece6a;
+  --tn-yellow: #e0af68;
+  --tn-red: #f7768e;
+  --tn-orange: #ff9e64;
+  --tn-muted: #565f89;
+  --tn-surface: rgba(65 72 104 / 40%);
+
+  --text-color-light: rgba(0 0 0 / 95%);
+  --text-color-dark: var(--tn-fg);
+
+  --icon-color-light: LightSteelBlue;
+  --icon-color-dark: var(--tn-blue);
+
+  --background-color-light: rgba(238 238 238 / 90%);
+  --background-color-dark: var(--tn-bg-bar);
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    color: var(--text-color-light);
+  }
+
+  i {
+    color: var(--icon-color-light);
+  }
+
+  #root {
+    background: var(--background-color-light);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--text-color-dark);
+  }
+
+  i {
+    color: var(--icon-color-dark);
+  }
+
+  #root {
+    background: var(--background-color-dark);
+  }
+}
+
+i {
+  margin-right: 7px;
+  font-size: var(--icon-size);
+}
+
+body {
+  font-family: ui-monospace, monospace;
+  font-size: var(--text-size);
+  overflow: hidden;
+}
+
+div,
+span,
+p {
+  cursor: default;
+  user-select: none;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+#root {
+  border-bottom: 1px solid rgba(122 162 247 / 15%);
+  border-radius: 0 0 8px 8px;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  height: 100%;
+  padding: 4px 1.5vw;
+}
+
+.left,
+.center,
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.center {
+  justify-self: center;
+}
+
+.right {
+  justify-self: end;
+}
+
+.logo,
+.binding-mode,
+.tiling-direction,
+.paused-button,
+.network,
+.memory,
+.cpu,
+.battery {
+  margin-right: 20px;
+}
+
+.workspaces {
+  display: flex;
+  align-items: center;
+}
+
+.workspace {
+  background: var(--tn-surface);
+  margin-right: 4px;
+  padding: 4px 8px;
+  color: var(--tn-muted);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &.displayed {
+    background: rgba(122 162 247 / 20%);
+    color: var(--tn-fg);
+  }
+
+  &.focused,
+  &:hover {
+    background: rgba(122 162 247 / 35%);
+    color: var(--tn-blue);
+  }
+}
+
+.binding-mode,
+.tiling-direction,
+.paused-button {
+  background: var(--tn-surface);
+  color: var(--tn-purple);
+  border-radius: 4px;
+  line-height: 1;
+  padding: 4px 8px;
+  border: 0;
+  cursor: pointer;
+}
+
+.paused-button {
+  color: var(--tn-red);
+}
+
+.binding-mode {
+  margin-right: 4px;
+}
+
+.cpu .high-usage {
+  color: var(--tn-red);
+}
+
+.battery {
+  position: relative;
+}
+
+.battery .charging-icon {
+  position: absolute;
+  font-size: 7px;
+  left: -8px;
+  top: 3px;
+}
