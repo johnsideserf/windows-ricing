@@ -14,7 +14,6 @@ $apps = @(
     "FilesCommunity.Files"
     "GitHub.cli"
     "Neovim.Neovim"
-    "zig.zig"
     "ajeetdsouza.zoxide"
     "junegunn.fzf"
     "eza-community.eza"

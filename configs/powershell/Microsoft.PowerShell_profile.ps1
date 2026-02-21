@@ -27,9 +27,10 @@ if ($PSVersionTable.PSVersion.Major -ge 7) {
 # zoxide (smarter cd)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
-# fzf
-Set-PSReadLineKeyHandler -Key 'Ctrl+r' -ScriptBlock { Invoke-FzfHistory }
+# fzf + PSFzf
 $env:FZF_DEFAULT_OPTS = '--color=bg+:#283457,bg:#16161e,spinner:#bb9af7,hl:#7aa2f7 --color=fg:#c0caf5,header:#7aa2f7,info:#e0af68,pointer:#bb9af7 --color=marker:#9ece6a,fg+:#c0caf5,prompt:#bb9af7,hl+:#7aa2f7'
+Import-Module PSFzf
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
 # eza aliases (modern ls)
 function ls { eza --icons @Args }
