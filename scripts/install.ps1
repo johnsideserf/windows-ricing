@@ -15,6 +15,13 @@ $apps = @(
     "GitHub.cli"
     "Neovim.Neovim"
     "zig.zig"
+    "ajeetdsouza.zoxide"
+    "junegunn.fzf"
+    "eza-community.eza"
+
+    "JesseDuffield.lazygit"
+    "BurntSushi.ripgrep.MSVC"
+    "dandavison.delta"
 )
 
 Write-Host "`n=== Windows Rice Installer ===" -ForegroundColor Cyan

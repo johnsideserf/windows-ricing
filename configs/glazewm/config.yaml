@@ -176,10 +176,15 @@ window_rules:
     match:
       - window_process: { regex: 'explorer|Files' }
 
-  # Workspace 7 - Game
+  # Workspace 7 - Game (Steam client)
   - commands: ['move --workspace 7']
     match:
       - window_process: { regex: 'steam|steamwebhelper' }
+
+  # Ignore game executables so GlazeWM doesn't add borders
+  - commands: ['ignore']
+    match:
+      - window_process: { regex: 'Cyberpunk2077' }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
