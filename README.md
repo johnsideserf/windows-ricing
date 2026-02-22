@@ -63,6 +63,17 @@ configs/
   nvim/              Neovim config (LazyVim)
 ```
 
+## Pending Upstream PRs
+
+Some features in this config depend on PRs that haven't been merged yet. The configs degrade gracefully — everything works on stock releases, you just won't see these extras until the PRs land:
+
+| Feature | PR | Fallback on stock release |
+|---|---|---|
+| GPU stats (temp, usage) | [glzr-io/zebar#257](https://github.com/glzr-io/zebar/pull/257) | GPU section hidden |
+| CPU temperature | [glzr-io/zebar#257](https://github.com/glzr-io/zebar/pull/257) | Temp not shown, usage still works |
+
+To use these features before the PRs are merged, build Zebar from the PR branch and replace the binary at `C:\Program Files\glzr.io\Zebar\zebar.exe`.
+
 ## Manual Steps
 
 These can't be fully automated and need to be done once after running the scripts:
