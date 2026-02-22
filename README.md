@@ -1,9 +1,14 @@
+<p align="center">
+  <img src="warhammer-transparent-20.png" alt="Logo" width="200">
+</p>
+
 # Windows Rice
 
 Tokyo Night Storm themed Windows 11 desktop setup with tiling window management, a custom status bar, and a fully scripted install.
 
 ![Tiled workspace with terminal, browser, and code editor](screenshot.png)
 ![Clean desktop with Zebar status bar](screenshot2.png)
+![Terminal setup](terminals-screenshot.png)
 
 ## Quick Start
 
