@@ -17,6 +17,7 @@ $apps = @(
     "ajeetdsouza.zoxide"
     "junegunn.fzf"
     "eza-community.eza"
+    "LibreHardwareMonitor.LibreHardwareMonitor"
 
     "JesseDuffield.lazygit"
     "BurntSushi.ripgrep.MSVC"

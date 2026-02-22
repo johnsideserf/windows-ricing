@@ -38,14 +38,50 @@
         media: { type: 'media' },
       });
 
+      // GPU provider created directly via Tauri IPC (not yet in published client-api).
+      const gpuConfig = { type: 'gpu', refreshInterval: 5000 };
+      const gpuConfigHash = JSON.stringify([gpuConfig], (_, v) =>
+        typeof v === 'object' ? v : String(v),
+      );
+      let gpuOutput = null;
+      const gpuListeners = new Set();
+
+      async function initGpuProvider() {
+        const ti = window.__TAURI_INTERNALS__;
+        if (!ti) { console.warn('GPU: __TAURI_INTERNALS__ not found'); return; }
+
+        const handler = ti.transformCallback((event) => {
+          if (event.payload.configHash !== gpuConfigHash) return;
+          const result = event.payload.result;
+          if (result.output) {
+            gpuOutput = result.output;
+            gpuListeners.forEach(fn => fn(gpuOutput));
+          }
+        });
+        await ti.invoke('plugin:event|listen', {
+          event: 'provider-emit',
+          target: { kind: 'Any' },
+          handler,
+        });
+        await ti.invoke('listen_provider', {
+          configHash: gpuConfigHash,
+          config: gpuConfig,
+        });
+      }
+      initGpuProvider();
+
       createRoot(document.getElementById('root')).render(<App />);
 
       function App() {
         const [output, setOutput] = useState(providers.outputMap);
+        const [gpu, setGpu] = useState(null);
         const scrollRef = useRef(null);
 
         useEffect(() => {
           providers.onOutput(() => setOutput(providers.outputMap));
+          gpuListeners.add(setGpu);
+          if (gpuOutput) setGpu(gpuOutput);
+          return () => gpuListeners.delete(setGpu);
         }, []);
 
         const spotifySession = output.media?.allSessions?.find(s =>
@@ -279,6 +315,29 @@
                   >
                     {Math.round(output.cpu.usage)}%
                   </span>
+                  {output.cpu.temperature != null && (
+                    <span className="temp">
+                      {Math.round(output.cpu.temperature)}°C
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {gpu && (
+                <div className="gpu">
+                  <i className="nf nf-md-expansion_card"></i>
+                  <span
+                    className={gpu.usage > 85 ? 'high-usage' : ''}
+                  >
+                    {gpu.usage != null
+                      ? `${Math.round(gpu.usage)}%`
+                      : '—'}
+                  </span>
+                  {gpu.temperature != null && (
+                    <span className="temp">
+                      {Math.round(gpu.temperature)}°C
+                    </span>
+                  )}
                 </div>
               )}
 

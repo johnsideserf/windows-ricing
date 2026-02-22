@@ -37,7 +37,8 @@ cd windows-ricing\scripts
 | Component | Tool | Description |
 |---|---|---|
 | Window manager | [GlazeWM](https://github.com/glzr-io/glazewm) | Tiling WM with vim-style keybindings |
-| Status bar | [Zebar](https://github.com/glzr-io/zebar) | Workspaces, CPU, RAM, battery, weather |
+| Status bar | [Zebar](https://github.com/glzr-io/zebar) | Workspaces, CPU/GPU temps, RAM, battery, weather |
+| Hardware monitor | [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor) | Exposes CPU temperature for Zebar (run as admin with Remote Web Server enabled) |
 | Terminal | [Windows Terminal](https://github.com/microsoft/terminal) | Acrylic blur, Tokyo Night Storm scheme |
 | Shell prompt | [Oh My Posh](https://ohmyposh.dev/) | `1_shell` theme |
 | System monitor | [btop4win](https://github.com/aristocratos/btop4win) | Tokyo Storm theme, vim keys |
@@ -73,6 +74,12 @@ Download and install **JetBrainsMono Nerd Font** from [nerdfonts.com](https://ww
 Install these mods from the Windhawk GUI after installing Windhawk:
 1. **Windows 11 Start Menu Styler** — select the "TranslucentStartMenu" theme
 2. **Taskbar height and transparency** (by m417z) — set taskbar opacity to 0
+
+### LibreHardwareMonitor
+Required for CPU temperature in the Zebar status bar. After installing, launch it **as administrator** and enable:
+- **Options > Remote Web Server > Run**
+- **Options > Run On Windows Startup**
+- **Options > Start Minimized**
 
 ### PowerToys
 Optionally install PowerToys (`winget install Microsoft.PowerToys`) and set the **PowerToys Run** hotkey to `` Alt+` `` in settings.

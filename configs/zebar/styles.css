@@ -124,6 +124,7 @@ body,
 .network,
 .memory,
 .cpu,
+.gpu,
 .battery {
   margin-right: 20px;
 }
@@ -231,8 +232,23 @@ body,
   margin-right: 4px;
 }
 
-.cpu .high-usage {
+.cpu .high-usage,
+.gpu .high-usage {
   color: var(--tn-red);
+}
+
+.temp {
+  color: var(--tn-muted);
+  margin-left: 4px;
+}
+
+.gpu {
+  display: flex;
+  align-items: center;
+}
+
+.gpu i {
+  font-size: 20px;
 }
 
 .battery {
