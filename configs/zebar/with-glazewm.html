@@ -21,6 +21,8 @@
       import React, {
         useState,
         useEffect,
+        useRef,
+        useLayoutEffect,
       } from 'https://esm.sh/react@18?dev';
       import { createRoot } from 'https://esm.sh/react-dom@18/client?dev';
       import * as zebar from 'https://esm.sh/zebar@3.0';
@@ -40,10 +42,29 @@
 
       function App() {
         const [output, setOutput] = useState(providers.outputMap);
+        const scrollRef = useRef(null);
 
         useEffect(() => {
           providers.onOutput(() => setOutput(providers.outputMap));
         }, []);
+
+        const spotifySession = output.media?.allSessions?.find(s =>
+          s.sessionId.toLowerCase().includes('spotify'),
+        );
+
+        const trackKey = spotifySession
+          ? `${spotifySession.title}\0${spotifySession.artist}`
+          : '';
+
+        // Set animation duration based on element width for constant scroll speed.
+        useLayoutEffect(() => {
+          const el = scrollRef.current;
+          if (el) {
+            const pixelsPerSecond = 50;
+            const duration = el.scrollWidth / pixelsPerSecond;
+            el.style.animationDuration = `${duration}s`;
+          }
+        }, [trackKey]);
 
         // Get icon to show for current network status.
         function getNetworkIcon(networkOutput) {
@@ -146,62 +167,54 @@
             <div className="center">{output.date?.formatted}</div>
 
             <div className="right">
-              {output.media &&
-                (() => {
-                  const spotifySession =
-                    output.media.allSessions?.find(s =>
-                      s.sessionId.toLowerCase().includes('spotify'),
-                    );
-                  if (!spotifySession) return null;
-                  return (
-                    <div className="media">
-                      <i className="nf nf-md-spotify"></i>
-                      <div className="media-text">
-                        <span className="media-scroll">
-                          {spotifySession.title}
-                          {spotifySession.artist &&
-                            ` \u2013 ${spotifySession.artist}`}
-                        </span>
-                      </div>
-                      <button
-                        className="media-btn"
-                        onClick={() =>
-                          output.media.previous({
-                            sessionId: spotifySession.sessionId,
-                          })
-                        }
-                      >
-                        <i className="nf nf-md-skip_previous"></i>
-                      </button>
-                      <button
-                        className="media-btn"
-                        onClick={() =>
-                          output.media.togglePlayPause({
-                            sessionId: spotifySession.sessionId,
-                          })
-                        }
-                      >
-                        <i
-                          className={`nf ${
-                            spotifySession.isPlaying
-                              ? 'nf-md-pause'
-                              : 'nf-md-play'
-                          }`}
-                        ></i>
-                      </button>
-                      <button
-                        className="media-btn"
-                        onClick={() =>
-                          output.media.next({
-                            sessionId: spotifySession.sessionId,
-                          })
-                        }
-                      >
-                        <i className="nf nf-md-skip_next"></i>
-                      </button>
-                    </div>
-                  );
-                })()}
+              {spotifySession && (
+                <div className="media">
+                  <i className="nf nf-md-spotify"></i>
+                  <div className="media-text">
+                    <span key={trackKey} ref={scrollRef} className="media-scroll">
+                      {spotifySession.title}
+                      {spotifySession.artist &&
+                        ` \u2013 ${spotifySession.artist}`}
+                    </span>
+                  </div>
+                  <button
+                    className="media-btn"
+                    onClick={() =>
+                      output.media.previous({
+                        sessionId: spotifySession.sessionId,
+                      })
+                    }
+                  >
+                    <i className="nf nf-md-skip_previous"></i>
+                  </button>
+                  <button
+                    className="media-btn"
+                    onClick={() =>
+                      output.media.togglePlayPause({
+                        sessionId: spotifySession.sessionId,
+                      })
+                    }
+                  >
+                    <i
+                      className={`nf ${
+                        spotifySession.isPlaying
+                          ? 'nf-md-pause'
+                          : 'nf-md-play'
+                      }`}
+                    ></i>
+                  </button>
+                  <button
+                    className="media-btn"
+                    onClick={() =>
+                      output.media.next({
+                        sessionId: spotifySession.sessionId,
+                      })
+                    }
+                  >
+                    <i className="nf nf-md-skip_next"></i>
+                  </button>
+                </div>
+              )}
 
               {output.glazewm && (
                 <>
