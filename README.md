@@ -47,6 +47,8 @@ cd windows-ricing\scripts
 | Cursor | [Bibata Modern Classic](https://github.com/ful1e5/Bibata_Cursor) | Minimal dark cursor theme |
 | File manager | [Files](https://files.community/) | Modern file explorer replacement |
 | Editor | [Neovim](https://neovim.io/) + [LazyVim](https://www.lazyvim.org/) | IDE-like editor with LSP, autocomplete, treesitter |
+| App launcher | [zebar-app-launcher](https://github.com/johnsideserf/zebar-app-launcher) | Waffle-menu button that opens a dropdown to launch apps |
+| DOOM widget | [zebar-doom-widget](https://github.com/johnsideserf/zebar-doom-widget) | Play DOOM shareware in a tiny bar preview, click to expand |
 | Font | [JetBrainsMono Nerd Font](https://www.nerdfonts.com/) | Used in terminal and status bar |
 
 ## Configs
