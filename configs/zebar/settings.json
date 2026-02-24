@@ -1,0 +1,20 @@
+{
+  "$schema": "https://github.com/glzr-io/zebar/raw/v3.1.1/resources/settings-schema.json",
+  "startupConfigs": [
+    {
+      "pack": "glzr-io.starter",
+      "widget": "with-glazewm",
+      "preset": "default"
+    },
+    {
+      "pack": "app-launcher",
+      "widget": "app-launcher",
+      "preset": "embedded"
+    },
+    {
+      "pack": "doom-widget",
+      "widget": "doom",
+      "preset": "bar"
+    }
+  ]
+}
